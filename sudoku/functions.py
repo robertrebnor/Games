@@ -1,5 +1,8 @@
+import random
+
 rows = 'ABCDEFGHI' #labels the rows on the board
 cols = '123456789' #labels the cols on the board
+digits =  cols
 
 def cross(a, b):
     """    
@@ -9,6 +12,7 @@ def cross(a, b):
 
 # A box is one single cell on the board, boxes creat all the single cells on the board
 boxes = cross(rows, cols)
+squares = boxes
 
 row_units = [cross(r, cols) for r in rows] #creats all the elements in a row into a list, and all the rows into one list
 column_units = [cross(rows, c) for c in cols] #the as above, but for each column
@@ -131,3 +135,58 @@ def search(values):
         attempt = search(new_sudoku)
         if attempt:
             return attempt
+
+
+def eliminate2(values, s, d):
+    """Eliminate d from values[s]; propagate when values or places <= 2.
+    Return values, except return False if a contradiction is detected."""
+    if d not in values[s]:
+        return values ## Already eliminated
+    values[s] = values[s].replace(d,'')
+    ## (1) If a square s is reduced to one value d2, then eliminate d2 from the peers.
+    if len(values[s]) == 0:
+	    return False ## Contradiction: removed last value
+    elif len(values[s]) == 1:
+        d2 = values[s]
+        if not all(eliminate2(values, s2, d2) for s2 in peers[s]):
+            return False
+    ## (2) If a unit u is reduced to only one place for a value d, then put it there.
+    for u in units[s]:
+        dplaces = [s for s in u if d in values[s]]
+        if len(dplaces) == 0:
+            return False ## Contradiction: no place for this value
+        elif len(dplaces) == 1:
+            # d can only be in one place in unit; assign it there
+                if not assign(values, dplaces[0], d):
+                    return False
+    return values
+
+
+
+def assign(values, s, d):
+    """Eliminate all the other values (except d) from values[s] and propagate.
+    Return values, except return False if a contradiction is detected."""
+    other_values = values[s].replace(d, '')
+    if all(eliminate2(values, s, d2) for d2 in other_values):
+        return values
+    else:
+        return False
+
+def random_puzzle(N=17):
+    """Make a random puzzle with N or more assignments. Restart on contradictions.
+    Note the resulting puzzle is not guaranteed to be solvable, but empirically
+    about 99.8% of them are solvable. Some have multiple solutions."""
+    values = dict((s, digits) for s in squares)
+    for s in shuffled(squares):
+        if not assign(values, s, random.choice(values[s])):
+            break
+        ds = [values[s] for s in squares if len(values[s]) == 1]
+        if len(ds) >= N and len(set(ds)) >= 8:
+            return ''.join(values[s] if len(values[s])==1 else '.' for s in squares)
+    return random_puzzle(N) ## Give up and make a new puzzle
+
+def shuffled(seq):
+    "Return a randomly shuffled copy of the input sequence."
+    seq = list(seq)
+    random.shuffle(seq)
+    return seq
