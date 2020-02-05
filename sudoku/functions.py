@@ -190,3 +190,5 @@ def shuffled(seq):
     seq = list(seq)
     random.shuffle(seq)
     return seq
+
+##Add function to extract one cell as hint
