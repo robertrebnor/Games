@@ -14,10 +14,12 @@ levelGame['4'] = 'Go back to main meny'
 levelGame['5'] = 'Exit program'
 
 solutionGame = { }
-solutionGame['1'] = "Show hints."
+solutionGame['1'] = "Show hints." #change this to "Show all possibilities"
 solutionGame['2'] = "Show solution."
 solutionGame['3'] = 'Go back to main meny'
 solutionGame['4'] = 'Exit program'
+# add an option to show solution to one spesific cell
+# in this option add a print out of the current board next to a board showing wiht A1 A2 A3 .. to help typing in the right cell number
 
 while True:
     print(" Welcome to Sudoku!")
