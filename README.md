@@ -1,5 +1,5 @@
 # Games
-This repository contains games in Python. These are made just for fun and so I have some projects to expand my skills in Python. 
+This repository contains games in Python. These games are made just for fun and to expand my skills in Python. 
 
 ## src 
 The code for the different games are placed here. Each game has its own folder. 
