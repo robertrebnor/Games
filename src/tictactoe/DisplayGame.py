@@ -38,11 +38,11 @@ def display(boxes, rows, cols, values):
     line = '  ' + '+'.join(['-'*(width)]*3)
 
     for r in rows:
-        if r in 'A':
+        if r in '1':
             print('  A  B  C ')
-        print( (r + ' ' ) +  ''.join(values[r+c].center(width)+('|' if c in '12' else '')
+        print( (r + ' ' ) +  ''.join(values[c+r].center(width)+('|' if c in 'AB' else '')
                     for c in cols))
-        if r in 'AB': print(line)
+        if r in '12': print(line)
     return
 
 

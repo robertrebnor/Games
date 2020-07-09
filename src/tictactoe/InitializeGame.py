@@ -15,7 +15,7 @@ def cross(rows, cols):
     """
     Returns any combination of elements from two variables 
     """
-    return [s+t for s in rows for t in cols]
+    return [s+t for s in cols for t in rows]
 
 class setGame():
 
@@ -24,8 +24,8 @@ class setGame():
 
         """
         # Define the rows and the cols of the board
-        self.rows = rows = 'ABC'
-        self.cols = cols = '123' 
+        self.rows = rows = '123'
+        self.cols = cols = 'ABC'
         self.grid = '         '
 
         # Define a "name" for each box on the board
