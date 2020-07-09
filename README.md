@@ -1,7 +1,19 @@
 # Games
+This repository contains games in Python. These games are made just for fun and to expand my skills in Python. 
 
-This folder contains games coded in Python. These are made as a learning process for me.
+## src 
+The code for the different games are placed here. Each game has its own folder. 
 
-## Sudoku
+### Sudoku
 The Sudoku game was written while doing an assignment at Udacity and also applies the great work by Peter Norvig in his blog post
 [Solving Every Sudoku Puzzle](https://norvig.com/sudoku.html)
+
+The main file is "main_soduko.py". Running this file to start plying Soduko. 
+The program offers:
+* To play a random game at the levels: easy, medium and hard (not finished)
+* To play a custom game. (not finished)
+* Get a solution to a custom game. (not finished)
+* Getting hints while playing a game. (not finished)
+
+### Yatzy
+This folder is tempy.
