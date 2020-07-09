@@ -8,6 +8,8 @@ from functions import *
 grid = '..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..'
 
 
+display(grid)
+
 # plot the game board 
 display(grid_values_StartingBoard(grid))
 
@@ -41,3 +43,26 @@ display( search(values) )
 
 
 display( random_puzzle(N=17))
+
+
+import random
+
+
+rows = 'ABCDEFGHI' #labels the rows on the board
+cols = '123456789' #labels the cols on the board
+digits =  cols
+
+def cross(a, b):
+    """    
+    Returns any combinaton of elements from two variables
+    """
+    return [s+t for s in a for t in b]
+
+# A box is one single cell on the board, boxes creat all the single cells on the board
+boxes = cross(rows, cols)
+squares = boxes
+
+values = dict((s, digits) for s in squares)
+
+seq = list(values)
+random.shuffle(seq)
