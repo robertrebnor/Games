@@ -6,10 +6,20 @@
 # By: Robert Rebnor             #
 #                               #
 #################################
-"""
-#import InitializeGame as InitializeGame
 
-#class SolveGame(InitializeGame.setGame):
+import PlayGame as PlayGame
+
+SolutionDict = {'Across the top': ['A1', 'B1', 'C1'],
+                'Across the middle': ['A2', 'B2', 'C2'],
+                'Across the bottom': ['A3', 'B3', 'C3'],
+                'Down the left side': ['A1', 'A2', 'A3'],
+                'Down the middle': ['B1', 'B2', 'B3'],
+                'Down the right side': ['C1', 'C2', 'C3'],
+                'Left down diagonal': ['A1', 'B2', 'C3'],
+                'Left up diagonal': ['A3', 'B2', 'C3']
+            }
+
+class SolveGame(PlayGame.PlayGame):
 
     def __init__(self):
         super().__init__()
@@ -17,51 +27,19 @@
     def Solver(self):
 
         count = self.count 
-        # Now we will check if player X or O has won,for every move after 5 moves. 
+        boardDict = self.boardDict 
+        turn = self.turn
         if count >= 5:
-            if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ': # across the top
-                printBoard(theBoard)
+            for x in SolutionDict.keys():
+                SolutionList = SolutionDict[x]
+                if boardDict[ SolutionList[0] ] == boardDict[ SolutionList[1] ] == boardDict[ SolutionList[2]] != ' ':
+                    print('\nGame Over.\n')
+                    print('Player ' + turn + ' has won the game')
+                    print('The winning combination is: ' + x + '. With the boxes: ' + SolutionList[0] + ', ' + SolutionList[1] + ', ' + SolutionList[2] + '.' )
+                    self.gameWon = "done"
+                    break 
+           
+            # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
+            if count == 9:
                 print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")                
-                break
-            elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ': # across the middle
-                printBoard(theBoard)
-                print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")
-                break
-            elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': # across the bottom
-                printBoard(theBoard)
-                print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")
-                break
-            elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': # down the left side
-                printBoard(theBoard)
-                print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")
-                break
-            elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ': # down the middle
-                printBoard(theBoard)
-                print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")
-                break
-            elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ': # down the right side
-                printBoard(theBoard)
-                print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")
-                break 
-            elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ': # diagonal
-                printBoard(theBoard)
-                print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")
-                break
-            elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ': # diagonal
-                printBoard(theBoard)
-                print("\nGame Over.\n")                
-                print(" **** " +turn + " won. ****")
-                break 
-
-        # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-        if count == 9:
-            print("\nGame Over.\n")                
-            print("It's a Tie!!")
-"""
+                print("It's a tie.")

@@ -24,7 +24,6 @@ line = '  ' + '+'.join(['-'*(width)]*3)
 
 len(line)
 
-
 for r in rows:
     if r in 'A':
         print('  A  B  C ')
@@ -32,14 +31,6 @@ for r in rows:
     print( (r + ' ' ) +  ''.join(values[r+c].center(width)+('|' if c in '12' else '')
                 for c in cols))
     if r in 'AB': print(line)
-print('done')
-
-
-
-
-
-for i in range(10):
-    print(i)
 print('done')
 
 
@@ -56,26 +47,6 @@ print('done')
 
 # diagonal      'A1' 'B2' 'C3'
 # diagonal      'A3' 'B2' 'C3'
-
-testeDict = {'Across the top': ['A1', 'B1', 'C1'],
-            'Across the middle': ['A2', 'B2', 'C2'],
-            'Across the bottom': ['A3', 'B3', 'C3']
-            }
-
-testeDict.keys()
-
-for x in testeDict.keys():
-    print(testeDict[x])
-print('test done')
-
-
-for x in testeDict.keys():
-    listTest = (testeDict[x])
-    print(listTest[0])
-    print(listTest[1])
-    print(listTest[2])
-print('test done')
-
 
 SolutionDict = {'Across the top': ['A1', 'B1', 'C1'],
                 'Across the middle': ['A2', 'B2', 'C2'],
@@ -99,4 +70,6 @@ if self.count >= 5:
             print('Player ' + turn + ' has won the game')
             print('The winning combination is: ' + x + '. With the boxes: ' + SolutionList[0] + ', ' + SolutionList[1] + ', ' + SolutionList[2] )
             break 
+
+
 

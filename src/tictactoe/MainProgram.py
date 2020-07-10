@@ -4,15 +4,16 @@
 
 
 
-import PlayGame as PlayGame
+# To do text:
+# Add the possibility for another game or exit
+# Add an game playing agent 
+# Comment better 
 
-TicTacToe = PlayGame.PlayGame()
+import SolveGame as SolveGame
+
+TicTacToe = SolveGame.SolveGame()
 
 TicTacToe.DisplayBoard()
 
 
 TicTacToe.Play()
-
-# To do text:
-# Add the possibility for another game or exit
-# Fix the capitalize, such that it is also capitalized in the check of a solution
