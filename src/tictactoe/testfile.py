@@ -71,6 +71,3 @@ if self.count >= 5:
             print('The winning combination is: ' + x + '. With the boxes: ' + SolutionList[0] + ', ' + SolutionList[1] + ', ' + SolutionList[2] )
             break 
 
-
-
-testing a com after fix
