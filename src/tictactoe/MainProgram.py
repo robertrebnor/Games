@@ -36,12 +36,23 @@ TicTacToe.DisplayBoard()
 
 
 
-TicTacToe.PlayWithPlayers()
+#TicTacToe.PlayWithPlayers()
 
 
 
-import DisplayGame as DisplayGame
+import PlayPlayers as PlayPlayers
 
-TTT = DisplayGame.DisplayGame()
+TTT = PlayPlayers.PlayWithPlayers()
 
 TTT.DisplayBoard()
+
+TTT.PlayWithPlayers()
+
+
+import AgentProgram as AgentProgram
+
+TestAgentProgram = AgentProgram.AgentPrograms()
+
+#TestAgentProgram.DisplayBoard()
+
+TestAgentProgram.NextMoveAgent()

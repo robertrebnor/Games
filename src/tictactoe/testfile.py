@@ -48,3 +48,26 @@ print('done')
 # diagonal      'A1' 'B2' 'C3'
 # diagonal      'A3' 'B2' 'C3'
 
+testDict = {'A1': 'test1', 'A2': 'test2'}
+
+for x in testDict.keys():
+    print(x)
+print('done')
+
+print(testDict['A1'])
+
+testList = ['a', 'b']
+testList = []
+
+str(testList)
+import random
+random.choice(testList)
+
+
+if not testList:
+    print('empty')
+print('done')
+
+if testList:
+    print('list not empty')
+print('done')

@@ -1,62 +1,114 @@
 
 
-import SolveGame as SolveGame
+import copy
+import random
 
-class PossibleMoves(SolveGame.SolveGame):
+import PlayerInput as PlayerInput
 
-    def __init__(self):
-        super().__init__()
-
-    def MoveAvailable(self):
-        return self.CopyBoard == ' '
-
-
-class NextMoves():
+class MovesOnBoard(PlayerInput.PlayerInput):
 
     def __init__(self):
         super().__init__()
+    
+    def MakeCopyBoard(self, OriginalBoard):
+        #for box in OriginalBoard.keys():
+        #    self.CopyBoard[box] = OriginalBoard[box]
+        self.CopyBoard = copy.deepcopy(OriginalBoard)
+
+    def AvailableMove(self, board, box):
+        return board[box] == ' '
 
     def WinInOne(self):
         # Do not need this if count is less than 5
         count = self.count 
-        CopyBoard = self.CopyBoard
-
+        turn = self.turn
+        
         if count >= 5: 
-            if MoveAvailable(self) == True:
-                SolveGame.SolveGame.Solver(self)
+            self.MakeCopyBoard(self.boardDict)
+            CopyBoard = self.CopyBoard
+            
+            for box in CopyBoard.keys():
+                if self.AvailableMove(CopyBoard, box) == True:
+                    self.CopyBoard[box] = turn
+                    self.Solver(UseCopyBoard = True)
+                    if self.gameWon == "done":
+                        return box
+                    else:
+                        return None
         else:
-            return False 
+            return None
         
 
-
-
- # Check if the player could win on their next move, and block them.
-
-113.     for i in range(1, 10):
-
-114.         copy = getBoardCopy(board)
-
-115.         if isSpaceFree(copy, i):
-
-116.             makeMove(copy, playerLetter, i)
-
-117.             if isWinner(copy, playerLetter):
-
-118.                 return i
-
-119.
-
-    def LoseInOne():
+    def LoseInOne(self):
         # Do not need to apply this is count i less than 5
+                # Do not need this if count is less than 5
+        count = self.count 
+        turn = self.turn
+        if count >= 5: 
+            if turn == 'X':
+                oppositeTurn = 'O'
+            elif turn == 'O':
+                oppositeTurn = 'X'
 
-    def TakeCorner():
-        #Corners: A1 C1 A3 C3
+            self.MakeCopyBoard(self.boardDict)
+            CopyBoard = self.CopyBoard
+            
+            for box in CopyBoard.keys():
+                if self.AvailableMove(CopyBoard, box) == True:
+                    self.CopyBoard[box] = oppositeTurn
+                    self.Solver(UseCopyBoard = True)
+                    if self.gameWon == "done":
+                        self.gameWon = None
+                        return box
+                    else:
+                        return None
+        else:
+            return None
 
-    def TakeCenter():
-        #Center: B2
+    def TakeCorner(self):
+        self.MakeCopyBoard(self.boardDict)
+        CopyBoard = self.CopyBoard
 
-    def TakeSide():
-        # Sides: B1 A2 C2 B3
+        AllCornerBoxes = ['A1', 'C1', 'A3', 'C3']
+        PossibleMoves = []
+
+        for box in AllCornerBoxes:
+            if self.AvailableMove(CopyBoard, box) == True:
+                PossibleMoves.append(box)
+        
+        if not PossibleMoves: #if no possible corner moves
+            return None 
+        if PossibleMoves:
+            return random.choice(PossibleMoves)
+
+
+    def TakeCenter(self): 
+        self.MakeCopyBoard(self.boardDict)
+        CopyBoard = self.CopyBoard
+        CenterBox = 'B2'
+
+        if self.AvailableMove(CopyBoard, CenterBox) == True:
+            return CenterBox
+        else:
+            return None
+
+
+    def TakeSide(self):
+        self.MakeCopyBoard(self.boardDict)
+        CopyBoard = self.CopyBoard
+
+        AllSideBoxes = ['B1', 'A2', 'C2', 'B3']
+        PossibleMoves = []
+
+        for box in AllSideBoxes:
+            if self.AvailableMove(CopyBoard, box) == True:
+                PossibleMoves.append(box)
+        
+        if not PossibleMoves: #if no possible corner moves
+            return None 
+        if PossibleMoves:
+            return random.choice(PossibleMoves)
+
 
     
     

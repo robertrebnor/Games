@@ -35,6 +35,7 @@ class setGame():
         self.turn = None
         self.count = 0   
         self.boardDict = self.BoxesAndValues(boxes, emptyBoardValues)
+        self.CopyBoard = dict()
         self.gameWon = None
         
     def CreateBoxes(self, rows, cols):

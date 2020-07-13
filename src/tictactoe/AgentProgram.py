@@ -7,36 +7,82 @@
 #                               #
 #################################
 
-import copy
+# Add:
+#Search Tree
 
 
 import Moves as Moves
 
-
-
-   def CopyBoard(self, OriginalBoard):
-        self.CopyBoard = copy.deepcopy(OriginalBoard)
-        if self.CopyBoard == OriginalBoard:
-            return True
-        else:
-            return False
-
-
-class AgentProgram(Moves.NextMoves):
+class AgentPrograms(Moves.MovesOnBoard):
 
     def __init__(self):
         super().__init__()
 
-    def NextMove(self):
+    def NextMoveAgent(self):
+        self.NumberOfPlayers()
+        self.PlayerSymbols() 
+
+        if self.NumbPlayers == 0:
+
+            self.count = 0  #count the number of moves made in the game    
+            self.turn = turn = 'X'
+            self.DisplayBoard()
         
-        # Test if it can win in the next move
-        # Test if it needs to block an win in the next move
-        # test if it needs to block a fork in the next move
-        # Test if it can move to a corner in the next move
-        # test if it can move to a side in the next move
+            for i in range(10):
+                print('')
 
-        # start with a corner if it is first?
-        # what about the middle?
+                self.count = i + 1
+                MoveFound = None
 
+                # must test to find which move to do
 
-#SearchTree
+                # first test if it is possible to win in one move
+                WinningMove = self.WinInOne()
+                if WinningMove != None: #then we can win in one move
+                    self.boardDict[WinningMove] = turn
+                    self.DisplayBoard()
+                    print('\nGame Over.\n')
+                    print('Player ' + turn + ' has won the game')
+                    print('The winning combination is ' +   ', '.join(self.SolutionDict[self.WinningCombo])  )
+                    break
+                
+                # secondly, check if it is possible to lose in the next move.
+                StopLosingMove = self.LoseInOne()
+                if StopLosingMove != None: 
+                    self.boardDict[StopLosingMove] = turn
+                    self.DisplayBoard()
+                    MoveFound = 'yes'
+                
+                # thirdly, check the corners 
+                if MoveFound == None:
+                    PlaceCornerMove = self.TakeCorner()
+                    if PlaceCornerMove != None:
+                        self.boardDict[PlaceCornerMove] = turn
+                        self.DisplayBoard()
+                        MoveFound = 'yes'
+
+                # fourthly, check if the center is available
+                if MoveFound == None:
+                    PlaceCenter = self.TakeCenter()
+                    if PlaceCenter != None:
+                        self.boardDict[PlaceCenter] = turn
+                        self.DisplayBoard()
+                        MoveFound = 'yes'
+
+                if MoveFound == None:
+                    # fifthly, check the sides
+                    PlaceSide = self.TakeSide()
+                    if PlaceSide != None:
+                        self.boardDict[PlaceSide] = turn
+                        self.DisplayBoard()
+
+                if self.count == 9:
+                    print("\nGame Over.\n")                
+                    print("It's a tie.")
+
+                # If the game is not over, we must change player to move
+                if turn =='X':
+                    self.turn = turn = 'O'
+                else:
+                    self.turn = turn = 'X'
+        
