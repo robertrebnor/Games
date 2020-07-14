@@ -57,17 +57,4 @@ print('done')
 print(testDict['A1'])
 
 testList = ['a', 'b']
-testList = []
 
-str(testList)
-import random
-random.choice(testList)
-
-
-if not testList:
-    print('empty')
-print('done')
-
-if testList:
-    print('list not empty')
-print('done')

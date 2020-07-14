@@ -22,17 +22,14 @@ class SolveGame(DisplayGame.DisplayGame):
                             'Down the middle': ['B1', 'B2', 'B3'],
                             'Down the right side': ['C1', 'C2', 'C3'],
                             'Left down diagonal': ['A1', 'B2', 'C3'],
-                            'Left up diagonal': ['A3', 'B2', 'C3']
+                            'Left up diagonal': ['A3', 'B2', 'C1']
                         }
         self.WinningCombo = None
 
-    def Solver(self, UseCopyBoard = False):
+    def Solver(self):
 
         count = self.count 
-        if UseCopyBoard == True:
-            boardDict = self.CopyBoard
-        elif UseCopyBoard == False:
-            boardDict = self.boardDict 
+        boardDict = self.boardDict
         
         SolutionDict = self.SolutionDict
         if count >= 5:
@@ -48,4 +45,15 @@ class SolveGame(DisplayGame.DisplayGame):
                 print("\nGame Over.\n")                
                 print("It's a tie.")
 
-    
+    def AgentPossibleWinningMove(self, CopiedBoard, box, turn):
+        boardDict = CopiedBoard
+        SolutionDict = self.SolutionDict
+        boardDict[box] = turn     
+  
+        for x in SolutionDict.keys():
+            SolutionList = SolutionDict[x]
+            if boardDict[ SolutionList[0] ] == boardDict[ SolutionList[1] ] == boardDict[ SolutionList[2]] != ' ':
+                #self.gameWon = "done"
+                self.WinningCombo = x
+                return True 
+        return False    

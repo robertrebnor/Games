@@ -11,60 +11,43 @@ class MovesOnBoard(PlayerInput.PlayerInput):
         super().__init__()
     
     def MakeCopyBoard(self, OriginalBoard):
-        #for box in OriginalBoard.keys():
-        #    self.CopyBoard[box] = OriginalBoard[box]
         self.CopyBoard = copy.deepcopy(OriginalBoard)
 
     def AvailableMove(self, board, box):
         return board[box] == ' '
 
     def WinInOne(self):
-        # Do not need this if count is less than 5
-        count = self.count 
         turn = self.turn
         
-        if count >= 5: 
+                   
+        for box in self.CopyBoard.keys():
             self.MakeCopyBoard(self.boardDict)
-            CopyBoard = self.CopyBoard
+            CopiedBoard = self.CopyBoard
             
-            for box in CopyBoard.keys():
-                if self.AvailableMove(CopyBoard, box) == True:
-                    self.CopyBoard[box] = turn
-                    self.Solver(UseCopyBoard = True)
-                    if self.gameWon == "done":
-                        return box
-                    else:
-                        return None
-        else:
-            return None
-        
-
+            if self.AvailableMove(CopiedBoard, box) == True:   
+                if self.AgentPossibleWinningMove(CopiedBoard, box, turn) == True:
+                    return box
+    
+        return None
+    
+    
     def LoseInOne(self):
-        # Do not need to apply this is count i less than 5
-                # Do not need this if count is less than 5
-        count = self.count 
         turn = self.turn
-        if count >= 5: 
-            if turn == 'X':
-                oppositeTurn = 'O'
-            elif turn == 'O':
-                oppositeTurn = 'X'
-
-            self.MakeCopyBoard(self.boardDict)
-            CopyBoard = self.CopyBoard
-            
-            for box in CopyBoard.keys():
-                if self.AvailableMove(CopyBoard, box) == True:
-                    self.CopyBoard[box] = oppositeTurn
-                    self.Solver(UseCopyBoard = True)
-                    if self.gameWon == "done":
-                        self.gameWon = None
-                        return box
-                    else:
-                        return None
+    
+        if turn == 'X':
+            oppositeTurn = 'O'
         else:
-            return None
+            oppositeTurn = 'X'
 
+        for box in self.CopyBoard.keys():
+            self.MakeCopyBoard(self.boardDict)
+            CopiedBoard = self.CopyBoard
+    
+            if self.AvailableMove(CopiedBoard, box) == True:
+                if self.AgentPossibleWinningMove(CopiedBoard, box, oppositeTurn) == True:
+                    return box
+        return None
+    
     def TakeCorner(self):
         self.MakeCopyBoard(self.boardDict)
         CopyBoard = self.CopyBoard

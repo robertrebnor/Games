@@ -49,10 +49,22 @@ TTT.DisplayBoard()
 TTT.PlayWithPlayers()
 
 
+
+
+
+
 import AgentProgram as AgentProgram
 
 TestAgentProgram = AgentProgram.AgentPrograms()
 
-#TestAgentProgram.DisplayBoard()
+TestAgentProgram.DisplayBoard()
+
 
 TestAgentProgram.NextMoveAgent()
+
+
+
+
+
+TestAgentProgram.boardDict
+TestAgentProgram.CopyBoard

@@ -24,34 +24,39 @@ class AgentPrograms(Moves.MovesOnBoard):
 
         if self.NumbPlayers == 0:
 
-            self.count = 0  #count the number of moves made in the game    
+            count = 0  #count the number of moves made in the game    
             self.turn = turn = 'X'
             self.DisplayBoard()
         
             for i in range(10):
                 print('')
 
-                self.count = i + 1
+                count += 1
+                print('--------------------------')
+                print('Let us do move: ', count)
                 MoveFound = None
 
                 # must test to find which move to do
 
-                # first test if it is possible to win in one move
-                WinningMove = self.WinInOne()
-                if WinningMove != None: #then we can win in one move
-                    self.boardDict[WinningMove] = turn
-                    self.DisplayBoard()
-                    print('\nGame Over.\n')
-                    print('Player ' + turn + ' has won the game')
-                    print('The winning combination is ' +   ', '.join(self.SolutionDict[self.WinningCombo])  )
-                    break
-                
+                 # first test if it is possible to win in one move
+                if count >= 5:
+                    WinningMove = self.WinInOne()
+
+                    if WinningMove != None: #then we can win in one move
+                        self.boardDict[WinningMove] = turn
+                        self.DisplayBoard()
+                        print('\nGame Over.\n')
+                        print('Player ' + turn + ' has won the game')
+                        print('The winning combination is ' +   ', '.join(self.SolutionDict[self.WinningCombo])  )
+                        break
+                    
                 # secondly, check if it is possible to lose in the next move.
-                StopLosingMove = self.LoseInOne()
-                if StopLosingMove != None: 
-                    self.boardDict[StopLosingMove] = turn
-                    self.DisplayBoard()
-                    MoveFound = 'yes'
+                if count >= 4:
+                    StopLosingMove = self.LoseInOne()
+                    if StopLosingMove != None: 
+                        self.boardDict[StopLosingMove] = turn
+                        self.DisplayBoard()
+                        MoveFound = 'yes'
                 
                 # thirdly, check the corners 
                 if MoveFound == None:
