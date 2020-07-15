@@ -44,7 +44,7 @@ display( search(values) )
 
 display( random_puzzle(N=17))
 
-
+"""
 import random
 
 
@@ -53,9 +53,9 @@ cols = '123456789' #labels the cols on the board
 digits =  cols
 
 def cross(a, b):
-    """    
-    Returns any combinaton of elements from two variables
-    """
+    #   
+    #Returns any combinaton of elements from two variables
+    #
     return [s+t for s in a for t in b]
 
 # A box is one single cell on the board, boxes creat all the single cells on the board
@@ -66,3 +66,5 @@ values = dict((s, digits) for s in squares)
 
 seq = list(values)
 random.shuffle(seq)
+
+"""
