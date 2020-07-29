@@ -93,5 +93,15 @@ class MovesOnBoard(PlayerInput.PlayerInput):
             return random.choice(PossibleMoves)
 
 
+    #def AnalyzeSpecificMoves(self):
+    #    """Not completed 
+    #    """
+    #    AllCornerBoxes = ['A1', 'C1', 'A3', 'C3']
+    #    CenterBox = 'B2'
+    #    AllSideBoxes = ['B1', 'A2', 'C2', 'B3']
+    #
+    #    self.MakeCopyBoard(startingBoard)
+    #    CopyBoard = self.CopyBoard
+
     
     

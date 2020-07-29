@@ -28,31 +28,6 @@
     # Add the choice of which agent program to be used in the game
 
 
-import SolveGame as SolveGame
-
-TicTacToe = SolveGame.SolveGame()
-
-TicTacToe.DisplayBoard()
-
-
-
-#TicTacToe.PlayWithPlayers()
-
-
-
-import PlayPlayers as PlayPlayers
-
-TTT = PlayPlayers.PlayWithPlayers()
-
-TTT.DisplayBoard()
-
-TTT.PlayWithPlayers()
-
-
-
-
-
-
 import AgentProgram as AgentProgram
 
 TestAgentProgram = AgentProgram.AgentPrograms()
@@ -62,6 +37,7 @@ TestAgentProgram.DisplayBoard()
 
 TestAgentProgram.NextMoveAgent()
 
+TestAgentProgram.AnalyzeSpecificBoard()
 
 
 
