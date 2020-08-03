@@ -7,10 +7,10 @@
 #                               #
 #################################
 
-import DisplayGame as DisplayGame
+from display import DisplayGame
 
 
-class SolveGame(DisplayGame.DisplayGame):
+class SolveGame(DisplayGame):
 
     def __init__(self):
         super().__init__()
@@ -25,6 +25,9 @@ class SolveGame(DisplayGame.DisplayGame):
                             'Left up diagonal': ['A3', 'B2', 'C1']
                         }
         self.WinningCombo = None
+        self.turn = None
+        self.gameWon = None
+        self.count = 0   
 
     def Solver(self):
 

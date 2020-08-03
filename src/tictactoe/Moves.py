@@ -3,9 +3,10 @@
 import copy
 import random
 
-import PlayerInput as PlayerInput
+from inputs import PlayerInput
 
-class MovesOnBoard(PlayerInput.PlayerInput):
+
+class MovesOnBoard(PlayerInput):
 
     def __init__(self):
         super().__init__()

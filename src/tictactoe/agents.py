@@ -11,89 +11,107 @@
 #Search Tree
 BoardBoxesList = ['A1', 'B1', 'C1', 'A2', 'B2', 'C2', 'A3', 'B3', 'C3', 'A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3', 'A1', 'B2', 'C3', 'A3', 'B2', 'C3']
 
-import Moves as Moves
+from moves import MovesOnBoard
 
-class AgentPrograms(Moves.MovesOnBoard):
+class AgentPrograms(MovesOnBoard):
 
     def __init__(self):
         super().__init__()
         self.startingBoard = self.BoxesAndValues(self.boxes, self.emptyBoardValues) #the board a player customize to analyze a specific situation on the board
+        self.CopyBoard = dict()
+    
+    def SearchNextMove(self):
+        """Used by agents to search one move ahead.
+        """
+        # first test if it is possible to win in one move
+        turn = self.turn
+        MoveFound = None
+        count = self.count
+
+        if count >= 5:
+            WinningMove = self.WinInOne()
+
+            if WinningMove != None: #then we can win in one move
+                self.boardDict[WinningMove] = turn
+                self.DisplayBoard()
+                print('\nGame Over.\n')
+                print('Player ' + turn + ' has won the game')
+                print('The winning combination is ' +   ', '.join(self.SolutionDict[self.WinningCombo])  )
+                MoveFound = "winning_move"
+                return MoveFound
+            
+        # secondly, check if it is possible to lose in the next move.
+        if count >= 4:
+            StopLosingMove = self.LoseInOne()
+            if StopLosingMove != None: 
+                self.boardDict[StopLosingMove] = turn
+                self.DisplayBoard()
+                MoveFound = 'yes'
+        
+        # thirdly, check the corners 
+        if MoveFound == None:
+            PlaceCornerMove = self.TakeCorner()
+            if PlaceCornerMove != None:
+                self.boardDict[PlaceCornerMove] = turn
+                self.DisplayBoard()
+                MoveFound = 'yes'
+
+        # fourthly, check if the center is available
+        if MoveFound == None:
+            PlaceCenter = self.TakeCenter()
+            if PlaceCenter != None:
+                self.boardDict[PlaceCenter] = turn
+                self.DisplayBoard()
+                MoveFound = 'yes'
+
+        if MoveFound == None:
+            # fifthly, check the sides
+            PlaceSide = self.TakeSide()
+            if PlaceSide != None:
+                self.boardDict[PlaceSide] = turn
+                self.DisplayBoard()
+
+        if self.count == 9:
+            print("\nGame Over.\n")                
+            print("It's a tie.")
+
+        # If the game is not over, we must change player to move
+        if turn =='X':
+            self.turn = turn = 'O'
+        else:
+            self.turn = turn = 'X'
+
+        return MoveFound
+
+    #def OnePlayerAgent(self):
+    #    """Analyzes one move ahead
+    #    """
+    #    self.turn = self.SymbolComputer1
+    #    print(" ")
+    #    print("The computer does a move:")
+    #    FoundMove = self.SearchNextMove()
+
+
 
     def NextMoveAgent(self):
-        self.NumberOfPlayers()
-        self.PlayerSymbols() 
+        #self.NumberOfPlayers()
+        #self.PlayerSymbols() 
 
         if self.NumbPlayers == 0:
-
-            count = 0  #count the number of moves made in the game    
-            self.turn = turn = 'X'
+   
+            self.turn = 'X'
             self.DisplayBoard()
         
             for i in range(10):
                 print('')
 
-                count += 1
+                self.count += 1
                 print('--------------------------')
-                print('Let us do move: ', count)
-                MoveFound = None
-
-                # must test to find which move to do
-
-                # first test if it is possible to win in one move
-                if count >= 5:
-                    WinningMove = self.WinInOne()
-
-                    if WinningMove != None: #then we can win in one move
-                        self.boardDict[WinningMove] = turn
-                        self.DisplayBoard()
-                        print('\nGame Over.\n')
-                        print('Player ' + turn + ' has won the game')
-                        print('The winning combination is ' +   ', '.join(self.SolutionDict[self.WinningCombo])  )
-                        break
-                    
-                # secondly, check if it is possible to lose in the next move.
-                if count >= 4:
-                    StopLosingMove = self.LoseInOne()
-                    if StopLosingMove != None: 
-                        self.boardDict[StopLosingMove] = turn
-                        self.DisplayBoard()
-                        MoveFound = 'yes'
+                print('Let us do move: ', self.count)
+                FoundMove = self.SearchNextMove()
                 
-                # thirdly, check the corners 
-                if MoveFound == None:
-                    PlaceCornerMove = self.TakeCorner()
-                    if PlaceCornerMove != None:
-                        self.boardDict[PlaceCornerMove] = turn
-                        self.DisplayBoard()
-                        MoveFound = 'yes'
-
-                # fourthly, check if the center is available
-                if MoveFound == None:
-                    PlaceCenter = self.TakeCenter()
-                    if PlaceCenter != None:
-                        self.boardDict[PlaceCenter] = turn
-                        self.DisplayBoard()
-                        MoveFound = 'yes'
-
-                if MoveFound == None:
-                    # fifthly, check the sides
-                    PlaceSide = self.TakeSide()
-                    if PlaceSide != None:
-                        self.boardDict[PlaceSide] = turn
-                        self.DisplayBoard()
-
-                if self.count == 9:
-                    print("\nGame Over.\n")                
-                    print("It's a tie.")
-
-                # If the game is not over, we must change player to move
-                if turn =='X':
-                    self.turn = turn = 'O'
-                else:
-                    self.turn = turn = 'X'
-    
-
-    # put this in a separate class?
+                if FoundMove == "winning_move":
+                    break
     
     #def AgentTraning(self):
     #    """A function to train the agent progrem to figure out the optimal moves.

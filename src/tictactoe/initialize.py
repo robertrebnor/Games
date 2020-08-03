@@ -1,5 +1,5 @@
 #################################  
-# File: Initialize Game         #
+# Module: initialize            #
 # Program in: Tic tac toe game  #
 # Main program: MainProgram     #
 #                               #
@@ -31,11 +31,11 @@ class setGame():
         self.column_units = [ self.CreateBoxes(rows, c) for c in cols]
 
         # Other 
-        self.turn = None
-        self.count = 0   
+        #self.turn = None
+        #self.count = 0   
         #self.boardDict = self.BoxesAndValues(boxes, emptyBoardValues)
-        self.CopyBoard = dict()
-        self.gameWon = None
+        #self.CopyBoard = dict()
+        #self.gameWon = None
         
     def CreateBoxes(self, rows, cols):
         """Combining the rows and cols to create an index for each cell (box) on the board. 

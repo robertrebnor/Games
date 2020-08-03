@@ -10,10 +10,9 @@
 from random import randint
 
 
-import SolveGame as SolveGame
+from solver import SolveGame
 
-
-class PlayerInput(SolveGame.SolveGame):
+class PlayerInput(SolveGame):
 
     def __init__(self):
         super().__init__()
@@ -58,16 +57,16 @@ class PlayerInput(SolveGame.SolveGame):
         
         elif SelectedNumberPlayers == 1:
             self.ReadInSymbolPlayer()
-            if self.SymbolPlayerOne != 'X':
+            if self.SymbolPlayerOne == 'X':
                 self.SymbolComputer1 = 'O'
-            elif self.SymbolPlayerOne != 'O':
+            elif self.SymbolPlayerOne == 'O':
                 self.SymbolComputer1 ='X'
 
         elif SelectedNumberPlayers == 2:
             self.ReadInSymbolPlayer()
-            if self.SymbolPlayerOne != 'X':
+            if self.SymbolPlayerOne == 'X':
                 self.SymbolPlayerTwo = 'O'
-            elif self.SymbolPlayerOne != 'O':
+            elif self.SymbolPlayerOne == 'O':
                 self.SymbolPlayerTwo ='X'
 
     def WhoGoesFirst(self):

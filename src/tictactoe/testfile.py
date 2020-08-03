@@ -1,6 +1,6 @@
 
 
-import InitializeGame as InitializeGame
+import initialize as InitializeGame
 
 testObj = InitializeGame.setGame()
 

@@ -28,11 +28,15 @@
     # Add the choice of which agent program to be used in the game
 
 
-import AgentProgram as AgentProgram
+import tictactoe_main as ttt
 
-TestAgentProgram = AgentProgram.AgentPrograms()
+TestAgentProgram = ttt.startgame
 
 TestAgentProgram.DisplayBoard()
+
+TestAgentProgram.TestingGameOptions()
+
+
 
 
 TestAgentProgram.NextMoveAgent()
@@ -41,6 +45,3 @@ TestAgentProgram.AnalyzeSpecificBoard()
 
 
 
-
-TestAgentProgram.boardDict
-TestAgentProgram.CopyBoard

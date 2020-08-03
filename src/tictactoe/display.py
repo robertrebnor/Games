@@ -7,9 +7,10 @@
 #                               #
 #################################
 
-import InitializeGame as InitializeGame
+#import InitializeGame as InitializeGame
+from initialize import setGame
 
-class DisplayGame(InitializeGame.setGame):
+class DisplayGame(setGame):
 
     def __init__(self):
         """ Let us display any board.
