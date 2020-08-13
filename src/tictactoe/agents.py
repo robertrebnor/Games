@@ -16,12 +16,27 @@ from moves import MovesOnBoard
 class AgentPrograms(MovesOnBoard):
 
     def __init__(self):
+        """ Adds new attributes to the object.
+
+        Attributes
+        ---------
+        staringboard: dict
+            An empty game board.
+        CopyBoard: dict
+            An empty dict to store a copy of a game board. 
+
+        """
         super().__init__()
         self.startingBoard = self.BoxesAndValues(self.boxes, self.emptyBoardValues) #the board a player customize to analyze a specific situation on the board
         self.CopyBoard = dict()
     
     def SearchNextMove(self):
-        """Used by agents to search one move ahead.
+        """ Used by agents to search one move ahead.
+
+        Returns:
+            'Winning_move' if there is a next winning move found.
+            'yes' if a move is found.
+            None if no move is found.
         """
         # first test if it is possible to win in one move
         turn = self.turn
@@ -71,6 +86,7 @@ class AgentPrograms(MovesOnBoard):
                 self.boardDict[PlaceSide] = turn
                 self.DisplayBoard()
 
+        ## fix these two next in a two func?
         if self.count == 9:
             print("\nGame Over.\n")                
             print("It's a tie.")
@@ -94,8 +110,6 @@ class AgentPrograms(MovesOnBoard):
 
 
     def NextMoveAgent(self):
-        #self.NumberOfPlayers()
-        #self.PlayerSymbols() 
 
         if self.NumbPlayers == 0:
    
@@ -160,6 +174,7 @@ class AgentPrograms(MovesOnBoard):
                 self.DisplayBoard(CopyBoard)
 
                 # If the game is not over, we must change player to move
+                # check count == 10? Will not ever work?
                 if self.count == 10:
                     print("The board is full. Nothing to analyze.")
                     break

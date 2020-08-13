@@ -58,3 +58,7 @@ print(testDict['A1'])
 
 testList = ['a', 'b']
 
+
+for i in range(10):
+    print(i)
+print('end')

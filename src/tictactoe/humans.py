@@ -37,8 +37,9 @@ class PlayWithPlayers(PlayerInput):
         self.turn = self.WhoGoesFirst()
         self.count = 0  #count the number of moves made in the game    
         self.DisplayBoard()
-       
-        for i in range(10):
+
+        # this should be i = 1 as default and range(10)
+        for i in range(9):
             print('')
                  
             # Call player input:

@@ -1,14 +1,28 @@
 #################################  
-# File: Play Game               #
+# Module: inputs                #
 # Program in: Tic tac toe game  #
-# Main program: MainProgram     #
+# Main module: tictactoe_main   #
 #                               #
 # By: Robert Rebnor             #
 #                               #
 #################################
+"""In this module:
+
+Goal
+----
+    * Gather pre-game inputs from the keyboard.
+    * Use the input to determin player/agent symbols and game order.
+
+Functions
+---------
+    __init__: 
+    NumberOfPlayers : 
+    ReadInSymbolPlayer : 
+    PlayerSymbols :
+    WhoGoesFirst : 
+"""
 
 from random import randint
-
 
 from solver import SolveGame
 
@@ -18,6 +32,8 @@ class PlayerInput(SolveGame):
         super().__init__()
 
     def NumberOfPlayers(self):
+        """ Gives the player(s) the choose between 0-2 palyers.
+        """
         print('Please select the number of players for the game.')
         print('Choose between:')
         print('   0. Both players are computers.')
@@ -37,7 +53,11 @@ class PlayerInput(SolveGame):
             else:
                 #the choice is successfully parsed and accepted.
                 break
+    
     def ReadInSymbolPlayer(self):
+        """ Let's the player choice between symbol 'X' and 'O' for player 1. 
+        """
+        
         while True:
             print('Choose between the symbols X or O.')
             self.SymbolPlayerOne = input('Please enter the symbol for player 1: ').upper()
@@ -49,6 +69,8 @@ class PlayerInput(SolveGame):
                 break
 
     def PlayerSymbols(self):
+        """ Given the choice of number of players, selects the symbols for the player(s)/agent(s)
+        """
         SelectedNumberPlayers = self.NumbPlayers
 
         if SelectedNumberPlayers == 0:

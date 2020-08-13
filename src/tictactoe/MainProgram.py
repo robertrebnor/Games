@@ -28,6 +28,10 @@
     # Add the choice of which agent program to be used in the game
 
 
+## Problems:
+    # Deep searches, problem with just one 'boardDict' and one 'boardCopy'
+
+
 import tictactoe_main as ttt
 
 TestAgentProgram = ttt.startgame

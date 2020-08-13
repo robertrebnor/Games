@@ -24,6 +24,11 @@ class DisplayGame(setGame):
 
     def __init__(self):
         """ Initializes empty board dict to display the game board.
+        
+        Attributes
+        ----------
+        boardDict: dict
+            Initialized as boxes on the board with empty values. 
         """
         super().__init__()
         self.boardDict = self.BoxesAndValues(self.boxes, self.emptyBoardValues)
@@ -54,7 +59,11 @@ class DisplayGame(setGame):
             print( (r + ' ' ) +  ''.join(values[c+r].center(width)+('|' if c in 'AB' else '')
                         for c in cols))
             if r in '12': print(line)
-        #return
+    
+    def DisplayTieMessage():
+        print("\nGame Over.\n")                
+        print("It's a tie.")
+
 
 
 
