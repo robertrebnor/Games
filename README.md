@@ -5,7 +5,7 @@ This repository contains games in Python. These games are made just for fun and 
 The code for the different games are placed here. Each game has its own folder. 
 
 ### Sudoku
-The Sudoku game was written while doing an assignment at Udacity and also applies the great work by Peter Norvig in his blog post
+The Sudoku game was written as a learning process and I have had great insperation by the great work by Peter Norvig in his blog post
 [Solving Every Sudoku Puzzle](https://norvig.com/sudoku.html)
 
 The main file is "main_soduko.py". Running this file to start plying Soduko. 
