@@ -53,6 +53,8 @@ class setGame():
         # Create a similar list for columns
         self.column_units = [ self.CreateBoxes(rows, c) for c in cols]
 
+        #self.InitializedBoard()
+
     def CreateBoxes(self, rows, cols):
         """Combining the rows and cols to create an index for each cell (box) on the board. 
 
@@ -93,3 +95,6 @@ class setGame():
         assert len(grid) == 9
 
         return dict(zip(boxes, grid))
+
+    def InitializedBoard(self):
+        self.boardDict = self.BoxesAndValues(self.boxes, self.emptyBoardValues)

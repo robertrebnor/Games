@@ -34,10 +34,7 @@
 
 import tictactoe_main as ttt
 
-TestAgentProgram = ttt.startgame
-
-TestAgentProgram.DisplayBoard()
-
+TestAgentProgram = ttt.startgame #use this line to start the game module
 TestAgentProgram.TestingGameOptions()
 
 

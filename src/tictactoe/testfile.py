@@ -62,3 +62,11 @@ testList = ['a', 'b']
 for i in range(10):
     print(i)
 print('end')
+
+PossibleMoves = ['A1', 'B1', 'C1', 'A2', 'B2', 'C2', 'A3', 'B3', 'C3']
+
+for i in range(len(PossibleMoves)):
+    print(i)
+
+for moves in PossibleMoves:
+    print(moves)

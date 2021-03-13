@@ -69,13 +69,18 @@ class PlayGame(PlayWithPlayers, AgentPrograms):
         playersInGame = self.NumbPlayers
 
         if playersInGame == 0:
+            self.InitializedBoard() # initi a new board game, should place this a better place
             self.NextMoveAgent()
         
         elif playersInGame == 1:
+            self.InitializedBoard()
             self.OnePlayerOneAgent()
 
         elif playersInGame == 2:
+            self.InitializedBoard()
             self.TwoPlayerGame()
+        elif playersInGame == 3:
+            print('this is simulation mode')
         else:
             print("Something is wrong.")
 

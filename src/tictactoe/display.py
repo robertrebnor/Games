@@ -31,7 +31,7 @@ class DisplayGame(setGame):
             Initialized as boxes on the board with empty values. 
         """
         super().__init__()
-        self.boardDict = self.BoxesAndValues(self.boxes, self.emptyBoardValues)
+    
 
     def DisplayBoard(self, CustomBoard = None):
         """ Displays the game board with possible values in the boxes.
